@@ -1,16 +1,27 @@
 <h3>Create an account</h3>
 
 <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-    <label for="username"> Username:</label>
-    <input id="username" type="text" formControlName="username">
-    {{authForm.get('username')?.errors | json}}
+    <app-input-form
+        label="Username"
+        [type]="'email'"
+        [id]="'username'"
+        [control]="authForm.get('username')"
+    ></app-input-form>
 
-    <label for="password">Password:</label>
-    <input id="password" type="password" formControlName="password">
+    <app-input-form
+        label="Password"
+        [type]="'password'"
+        [id]="'password'"
+        [control]="authForm.get('password')"
+    ></app-input-form>
     {{authForm.get('password')?.errors | json}}
 
-    <label for="passwordConfirmation">Password:</label>
-    <input id="passwordConfirmation" type="password" formControlName="passwordConfirmation">
+    <app-input-form
+        label="Password Confirmation"
+        [type]="'password'"
+        [id]="'passwordConfirmation'"
+        [control]="authForm.get('passwordConfirmation')"
+    ></app-input-form>
     {{authForm.get('passwordConfirmation')?.errors | json}}
 
     {{authForm.errors | json}}
