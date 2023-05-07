@@ -1,32 +1,40 @@
-<h3>Create an account</h3>
+<div class="container mx-auto rounded-md shadow-lg p-4">
+    <h3 class="text-3xl font-bold">Create an account</h3>
 
-<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-    <app-input-form
-        label="Username"
-        [type]="'email'"
-        [id]="'username'"
-        [control]="authForm.get('username')"
-    ></app-input-form>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <app-input-form
+            label="Username"
+            [type]="'email'"
+            [id]="'username'"
+            [control]="authForm.get('username')"
+        ></app-input-form>
 
-    <app-input-form
-        label="Password"
-        [type]="'password'"
-        [id]="'password'"
-        [control]="authForm.get('password')"
-    ></app-input-form>
-    {{authForm.get('password')?.errors | json}}
+        <app-input-form
+            label="Password"
+            [type]="'password'"
+            [id]="'password'"
+            [control]="authForm.get('password')"
+        ></app-input-form>
+        {{authForm.get('password')?.errors | json}}
 
-    <app-input-form
-        label="Password Confirmation"
-        [type]="'password'"
-        [id]="'passwordConfirmation'"
-        [control]="authForm.get('passwordConfirmation')"
-    ></app-input-form>
-    {{authForm.get('passwordConfirmation')?.errors | json}}
+        <app-input-form
+            label="Password Confirmation"
+            [type]="'password'"
+            [id]="'passwordConfirmation'"
+            [control]="authForm.get('passwordConfirmation')"
+        ></app-input-form>
+        {{authForm.get('passwordConfirmation')?.errors | json}}
 
-    {{authForm.errors | json}}
+        {{authForm.errors | json}}
 
-    <button type="submit" [disabled]="authForm.invalid">Submit</button>
-</form>
+        <button
+            type="submit"
+            [disabled]="authForm.invalid"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+        >
+            Submit
+        </button>
+    </form>
+</div>
 
 
