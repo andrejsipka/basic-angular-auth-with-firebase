@@ -11,7 +11,12 @@
         [formControl]="control"
         class="border py-2 px-3 text-gray-700 rounded-md"
     >
-    <p class="text-red-500 text-xs italic mt-2">
-        {{control?.errors | json}}
+
+    <p *ngIf="control.errors.minlength" class="text-red-500 text-xs italic mt-2">
+        Value entered is
+        {{control.errors.minlength.actualLength}}
+        characters long but it must be at least
+        {{control.errors.minlength.requiredLength}}
+        characters
     </p>
 </div>

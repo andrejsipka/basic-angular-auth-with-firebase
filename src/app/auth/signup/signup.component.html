@@ -15,7 +15,6 @@
             [id]="'password'"
             [control]="authForm.get('password')"
         ></app-input-form>
-        {{authForm.get('password')?.errors | json}}
 
         <app-input-form
             label="Password Confirmation"
@@ -23,9 +22,17 @@
             [id]="'passwordConfirmation'"
             [control]="authForm.get('passwordConfirmation')"
         ></app-input-form>
-        {{authForm.get('passwordConfirmation')?.errors | json}}
 
-        {{authForm.errors | json}}
+        <p
+            *ngIf="
+                authForm.get('password')?.touched &&
+                authForm.get('passwordConfirmation')?.touched &&
+                authForm.errors
+            "
+            class="text-red-500 text-xs italic mt-2"
+        >
+            Password and Password Confirmation must match
+        </p>
 
         <button
             type="submit"
@@ -36,5 +43,9 @@
         </button>
     </form>
 </div>
+
+<span>Have an account?
+    <a routerLink="/signin">Sign in</a>
+</span>
 
 
