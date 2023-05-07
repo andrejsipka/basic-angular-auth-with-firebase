@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // Firebase auth
 import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Observable } from 'rxjs';
 
 interface Credentials {
     username: string,
@@ -15,11 +16,11 @@ export class AuthService {
         private authFire: Auth,
     ) { }
 
-    public register({ username, password}: Credentials) {
+    public register({ username, password }: Credentials) {
         return createUserWithEmailAndPassword(this.authFire, username, password);
     }
 
-    public login(username: string, password: string) {
+    public login({ username, password }: Credentials) {
         return createUserWithEmailAndPassword(this.authFire, username, password);
     }
 }
