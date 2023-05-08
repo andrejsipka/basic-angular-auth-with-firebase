@@ -1,32 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import {  Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
-import { BehaviorSubject, Observable} from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { skipWhile, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PermissionsService {
-    public isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public isAuthenticated$: Subject<boolean> = new Subject();
 
     constructor(
         private authFire: Auth,
         private router: Router
     ) {}
-
-    canActivate(): Observable<boolean> {
-        onAuthStateChanged(this.authFire, (user) => {
-            const isAuthenticated = user ? true : false;
-            this.isAuthenticated$.next(isAuthenticated);
-        });
-
-        return this.isAuthenticated$.asObservable().pipe(
-            tap((authenticated) => {
-                if(!authenticated) {
-                    this.router.navigateByUrl('/');
-                }
-            })
-        );
-    }
 
     canMatch(): Observable<boolean> {
         onAuthStateChanged(this.authFire, (user) => {

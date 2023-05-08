@@ -1,1 +1,6 @@
-<p>map works!</p>
+<ng-container *ngIf="apiMaps$ | async">
+    <google-map
+        width="100%"
+        height="100%"
+    ></google-map>
+</ng-container>
