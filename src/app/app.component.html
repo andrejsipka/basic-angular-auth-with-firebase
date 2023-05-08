@@ -4,8 +4,14 @@
     </a>
 
     <ul class="flex gap-4">
-        <li><a routerLink="/signin">Sign in</a></li>
-        <li><a routerLink="/signup">Sign up</a></li>
+        <ng-container *ngIf="!(readSignin$ | async)">
+            <li><a routerLink="/">Sign in</a></li>
+            <li><a routerLink="/signup">Sign up</a></li>
+        </ng-container>
+
+        <ng-container *ngIf="(readSignin$ | async)">
+            <li><a routerLink="/signout">Sign Out</a></li>
+        </ng-container>
     </ul>
 </nav>
 
